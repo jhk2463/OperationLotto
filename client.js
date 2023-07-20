@@ -275,6 +275,7 @@ function onMessage(msg) {
         
         case 'updateBoard':
             //Loop through lotto sent by server and update on client
+
             for(i=0; i<2; i++) {
                 myLottos[i].innerHTML = data.lotto[i];
                 opponentLottos[i].innerHTML = data.lotto[i];
@@ -400,6 +401,14 @@ function replaceCards() {
     }));
 }
 
+//Function to reroll lottos and dice for a rematch
+function resetGame() {
+    socket.send(JSON.stringify({
+        'tag': 'resetGame',
+        'gameId': gameId
+    }));
+}
+
 //Functions to allow making selections for answer attempt
 function makeSelections() {
     myCards.forEach(card => {
@@ -480,6 +489,15 @@ function reset() {
     dice.forEach(die => {
         die.classList.remove('answerSlot');
         die.classList.add('deck');
+    });
+}
+
+function resetLottoVisual() {
+    myLottos.forEach(lotto => {
+        lotto.classList.remove('correct');
+    });
+    opponentLottos.forEach(lotto => {
+        lotto.classList.remove('correct');
     });
 }
 
@@ -601,11 +619,15 @@ function rematch() {
             'gameId': gameId,
             'clientId': clientId
         }));
+        resetLottoVisual();
         statusBox.innerText = 'Waiting for opponent response...';
         popup.style.display='none';
     }
     else {
-        reroll();
+        resetGame();
+        reset();
+        resetLottoVisual();
+        dealCards();
         rematchBool = 0;
         popup.style.display='none';
     }

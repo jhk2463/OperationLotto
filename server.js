@@ -184,6 +184,12 @@ function onMessage(msg) {
                 }
             });
             break;
+
+        case 'resetGame':
+            games[data.gameId].lotto = rollLotto();
+            games[data.gameId].dice = rollDice();
+            console.log(games[data.gameId].lotto);
+            updateBoard(data.gameId);
     }
 }
 
@@ -223,7 +229,11 @@ function updateBoard(gameId) {
 function rollLotto() {
     var lotto = [0, 0];
     for (let i=0; i<2; i++) {
-        lotto[i] = Math.ceil(Math.random() * 50);
+        let num = 0
+        do {
+            num = Math.ceil(Math.random() * 50);
+        } while(lotto.includes(num));
+        lotto[i] = num;
     }
     return lotto;
 }
