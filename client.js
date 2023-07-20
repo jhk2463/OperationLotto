@@ -26,6 +26,8 @@ const answerResult = document.querySelector('.answerResult');
 const selectionContainer = document.querySelector('.selectionContainer');
 const myCards = document.querySelectorAll('.selectionContainer #card');
 const dice = document.querySelectorAll('#die');
+const exchangeLabel = document.querySelector('.exchangeLabel');
+const exchangeBtn = document.querySelector('.exchangeBtn');
 const passBtn = document.querySelector('.passBtn');
 const bellBtn = document.querySelector('.bellBtn');
 
@@ -83,6 +85,51 @@ joinBtn.addEventListener('click', () => {
         'gameId': gameId
     }))
 });
+
+let chances = 3;
+let prevStatus = "";
+
+//Event listener for clicking on 'Exchange' button
+exchangeBtn.addEventListener('click', () => {
+    prevStatus = statusBox.innerHTML;
+    statusBox.innerHTML = "Choose a card you want to exchange";
+    myCards.forEach(card => {
+        card.classList.add('correct');
+        card.addEventListener('click', exchangeCard);
+        card.removeEventListener('click', cardClicked);
+    });
+});
+
+function exchangeCard(src) {
+    src.target.innerHTML = Math.ceil(Math.random() * 6);
+    myCards.forEach(card => {
+        card.classList.remove('correct');
+        card.removeEventListener('click', exchangeCard);
+        if(incorrectStack > 0) {
+            card.addEventListener('click', cardClicked);
+        }
+    });
+
+    var cards = [0, 0, 0, 0, 0, 0, 0, 0];
+    for(i=0; i<8; i++) {
+        cards[i] = myCards[i].innerHTML;
+    }
+    socket.send(JSON.stringify({
+        'tag': 'opponentCards',
+        'clientId': clientId,
+        'gameId': gameId,
+        'cards': cards
+    }));
+
+    chances--;
+    exchangeLabel.innerHTML = "Chances: " + chances;
+    if(chances == 0) {
+        disableButtons(exchangeBtn);
+    }
+
+    statusBox.innerHTML = prevStatus;
+
+}
 
 //Event listener for clicking on 'Pass' button
 passBtn.addEventListener('click', () => {
@@ -407,6 +454,8 @@ function resetGame() {
         'tag': 'resetGame',
         'gameId': gameId
     }));
+    let chances = 3;
+    enableButtons(exchangeBtn);
 }
 
 //Functions to allow making selections for answer attempt

@@ -188,7 +188,6 @@ function onMessage(msg) {
         case 'resetGame':
             games[data.gameId].lotto = rollLotto();
             games[data.gameId].dice = rollDice();
-            console.log(games[data.gameId].lotto);
             updateBoard(data.gameId);
     }
 }
@@ -230,9 +229,9 @@ function rollLotto() {
     var lotto = [0, 0];
     for (let i=0; i<2; i++) {
         let num = 0
-        do {
+        while(lotto.includes(num)) {
             num = Math.ceil(Math.random() * 50);
-        } while(lotto.includes(num));
+        } 
         lotto[i] = num;
     }
     return lotto;

@@ -329,7 +329,7 @@ h1 {
     grid-template-columns: auto auto auto auto;
     gap: 20px;
     justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 
 #card {
@@ -337,12 +337,15 @@ h1 {
     height: 90px;
 }
 
-.rightBtns {
+.buttonStack {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
+.exchangeBtn,
 .passBtn,
 .bellBtn {
     width: 70px;
@@ -352,13 +355,28 @@ h1 {
     background-color: rgb(141, 1, 1);
 }
 
+.exchangeLabel {
+    width: 80px;
+    height: 20px;
+    color: white;
+    font-size: 0.9rem;
+    background-color: rgb(141, 1, 1);
+    border: 1px solid black;
+}
+
+.exchangeBtn{
+    width: 80px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
 .statusBox {
     background-color: white;
     text-align: center;
     width: 50%;
     margin: auto;
     margin-bottom: 1%;
-    visibility: hidden;
+    visibility: visible;
 }
 
 .popup {
