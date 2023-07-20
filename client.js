@@ -102,6 +102,12 @@ exchangeBtn.addEventListener('click', () => {
 
 function exchangeCard(src) {
     src.target.innerHTML = Math.ceil(Math.random() * 6);
+    
+    src.target.classList.add('animateCard');
+    setTimeout(() => {
+        src.target.classList.remove('animateCard');
+    }, 1000);
+    
     myCards.forEach(card => {
         card.classList.remove('correct');
         card.removeEventListener('click', exchangeCard);
@@ -331,7 +337,15 @@ function onMessage(msg) {
             //Loop through dice sent by server and update on client
             for(i=0; i<3; i++) {
                 dice[i].innerHTML = data.dice[i];
+                dice[i].classList.add('animateCard');
             }
+
+            setTimeout(() => {
+                for(i=0; i<3; i++) {
+                    dice[i].classList.remove('animateCard');
+                }
+            }, 1000);
+
             statusBox.innerHTML = "Hit the bell to submit an answer";
             startTimer(); 
             reset();
@@ -421,8 +435,17 @@ function dealCards() {
     var cards = [0, 0, 0, 0, 0, 0, 0, 0];
     for(i=0; i<8; i++) {
         myCards[i].innerHTML = Math.ceil(Math.random() * 6);
+        myCards[i].classList.add('animateCard');
         cards[i] = myCards[i].innerHTML;
     }
+
+    setTimeout(() => {
+        for(i=0; i<8; i++) {
+            myCards[i].classList.remove('animateCard');
+        console.log('remove');
+        }
+    }, 1000);
+
     socket.send(JSON.stringify({
         'tag': 'opponentCards',
         'clientId': clientId,
@@ -437,9 +460,19 @@ function replaceCards() {
     for(i=0; i<8; i++) {
         if(myCards[i].classList.contains('answerSlot')) {
             myCards[i].innerHTML = Math.ceil(Math.random() * 6);
+            myCards[i].classList.add('animateCard');
         }
         cards[i] = myCards[i].innerHTML;
     }
+
+    setTimeout(() => {
+        for(i=0; i<8; i++) {
+            if(myCards[i].classList.contains('answerSlot')) {
+                myCards[i].classList.remove('animateCard');
+            }
+        }
+    }, 1000);
+
     socket.send(JSON.stringify({
         'tag': 'opponentCards',
         'clientId': clientId,
@@ -454,7 +487,7 @@ function resetGame() {
         'tag': 'resetGame',
         'gameId': gameId
     }));
-    let chances = 3;
+    chances = 3;
     enableButtons(exchangeBtn);
 }
 

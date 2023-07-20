@@ -337,6 +337,22 @@ h1 {
     height: 90px;
 }
 
+.animateCard {
+    animation: scaleUpAndDown 0.7s normal;
+}
+
+@keyframes scaleUpAndDown {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .buttonStack {
     display: flex;
     flex-direction: column;
