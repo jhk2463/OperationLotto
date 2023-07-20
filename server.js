@@ -1,4 +1,6 @@
-const http = require('http').createServer().listen(8000, console.log("Listening on port 8000"))
+const PORT = 8000;
+
+const http = require('http').createServer().listen(PORT, console.log("Listening on port " + PORT));
 const WebSocket = require('websocket').server;    //Import websocket 
 const wss = new WebSocket({'httpServer' : http}); //Create websocket server 
 
