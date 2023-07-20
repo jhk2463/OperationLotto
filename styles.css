@@ -1,0 +1,398 @@
+* {
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+body {
+    background-color: #e6d9c7;
+}
+
+h1 {
+    text-align: center;
+    line-height: 2.5rem;
+    border-bottom: 4px solid rgb(141, 1, 1);
+    border-top: 4px solid rgb(141, 1, 1);
+    color: rgb(141, 1, 1);
+    background-color: white;
+    margin-top: 0;
+}
+
+.container {
+    width: 70vw;
+    height: 80vh;
+    background-color: white;
+    margin: auto;
+    display: flex;
+    box-shadow: 5px 10px 20px 10px #996515;
+}
+
+.connectBox {
+    width: 70vw;
+    height: 80vh;
+    background-color: white;
+    margin: auto;
+    display: grid;
+    clear: both;
+    position: absolute;
+    visibility: visible;
+}
+
+.input {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.sidebar {
+    width: 17%;
+    background-color: rgb(211, 195, 172);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.createBtn,
+.connectBtn,
+.joinBtn,
+.exitRoomBtn {
+    display: block;
+    width: 95%;
+    margin: 15px auto;
+    height: 30px;
+    color: white;
+    font-size: 1rem;
+    background-color: rgb(141, 1, 1);
+}
+
+.exitRoomBtn {
+    display: none;
+}
+
+.label {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    width: 95%;
+    margin: 15px auto;
+    margin-bottom: 0px;
+    height: 30px;
+    color: white;
+    font-size: 1rem;
+    background-color: rgb(141, 1, 1);
+}
+
+#opponent {
+    height: 60px;
+    display: none;
+    text-align: center;
+}
+
+.gamesList {
+    list-style: none;
+    padding-left:0;
+}
+
+.gamesList li {
+    width: 95%;
+    margin: 0 auto;
+    padding: 5px;
+    height: 30px;
+    font-size: 1rem;
+    background-color: #e6d9c7;
+}
+
+.gamesList li:hover {
+    color:white;
+    background-color: rgb(103, 103, 103);
+}
+
+.mainbar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #e6d9c7;
+}
+
+.board {
+    visibility: visible;
+}
+
+.topBar{
+    display: flex;
+    justify-content: space-between;
+}
+.myLottos {
+    display: flex;
+    margin-top: 1%;
+    margin-left: 1%;
+    gap: 5px;
+}
+
+.lotto {
+    background-color: white;
+    color: rgb(141, 1, 1);
+    width: 40px;
+    height: 40px;
+    border-radius: 5rem;
+    border: 1.5px solid rgb(141, 1, 1);
+    font-size: 1rem;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.opponentDisplay {
+    background-color: rgb(211, 195, 172);
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    transform: scale(0.6);
+    margin-top: -30px;
+    margin-right: -100px;
+    height: fit-content;
+    width: 35vw;
+    border: 1.5px solid rgb(141, 1, 1);
+}
+
+.opponentDisplay label {
+    font-size: 1.5rem;
+}
+
+.opponentSelection {
+    display: flex;
+    align-items:center;
+    justify-content:space-evenly;
+}
+
+.opponentLottos {
+    display: flex;
+    margin-top: 1%;
+    margin-left: 1%;
+    gap: 5px;
+    margin-left: 60px;
+    margin-bottom: 35px;
+}
+
+.opponentDisplay .cards {
+    transform: scale(0.6);
+    margin-top: -30px;
+    margin-left: -20px;
+}
+
+
+.timerContainer {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.timer {
+    background-color: white;
+    color: rgb(141, 1, 1);
+    border: 3px solid rgb(141, 1, 1);
+    border-radius: 30px;
+    font-size: 1.5rem;
+    width: 120px;
+    height: 40px;
+    margin-top: -110px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.countdown {
+    background-color: white;
+    color: rgb(141, 1, 1);
+    border: 3px solid rgb(141, 1, 1);
+    border-radius: 40px;
+    font-size: 3rem;
+    width:70px;
+    height: 70px;
+    display: none;
+    align-items:center;
+    justify-content:center;
+}
+
+.answerContainer {
+    background-color: rgb(141, 1, 1);
+    height: 20vh;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+.answerSlot {
+    background-color: rgb(190, 177, 157);
+    color: rgb(190, 177, 157);
+    box-shadow: 1px 2px 4px 2px rgb(109, 102, 92);
+    font-size: 2.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#dieSlot {
+    width: 50px;
+    height: 50px;
+}
+
+#cardSlot {
+    width: 60px;
+    height: 90px;
+}
+
+.submitBtn,
+.resetBtn {
+    display: block;
+    width: 70px;
+    height: 40px;
+    color: black;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.answerResult {
+    background-color: white;
+    color: rgb(141, 1, 1);
+    border: 3px solid rgb(141, 1, 1);
+    border-radius: 100px;
+    font-size: 2.5rem;
+    width: fit-content;
+    min-width: 70px;
+    height: 70px;
+    padding: 10px;
+    position: absolute;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    opacity: 0; 
+}
+
+.answerResultAnimate {
+    animation: opacityOnAndOff 4s normal;
+}
+
+@keyframes opacityOnAndOff {
+    0% {
+        opacity: 0;
+    }
+    25%{
+      opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.selectionContainer {
+    display: flex;
+    align-items:center;
+    justify-content:space-evenly;
+}
+
+.dice {
+    display: flex;
+    justify-content:center;
+    gap: 20px;
+}
+
+#die {
+    width: 50px;
+    height: 50px;
+}
+
+.deck {
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 2.5rem;
+    border-radius: 4px;
+    box-shadow: 1px 2px 4px 2px rgb(59, 1, 1)
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
+#card {
+    width: 60px;
+    height: 90px;
+}
+
+.rightBtns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passBtn,
+.bellBtn {
+    width: 70px;
+    height: 40px;
+    color: white;
+    font-size: 1rem;
+    background-color: rgb(141, 1, 1);
+}
+
+.statusBox {
+    background-color: white;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1%;
+    visibility: hidden;
+}
+
+.popup {
+    background-color:white;
+    box-shadow: 0 5px 5px rgb(141, 1, 1);
+    border: 3px solid rgb(141, 1, 1);
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%) scale(1);
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.grey-out {
+    color: rgb(202, 202, 202);
+    background-color: rgb(103, 103, 103);
+}
+
+.select {
+    background-color: rgb(103, 103, 103) !important;
+    color:white;
+}
+
+.correct {
+    background-color: rgb(148, 202, 148);
+}
+
+.incorrect {
+    background-color: rgb(202, 148, 148);
+}

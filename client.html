@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="client.js" defer></script>
+    <title>Operation Lotto</title>
+</head>
+
+<body>
+    <h1>Operation Lotto</h1>
+
+    <div class="container">
+
+        <div class="connectBox">
+            <form class="input" onsubmit="return false">
+                <input id="username" type="text" placeholder="Enter your name">
+                <input class="connectBtn" type="submit" value="Play">
+            </form>
+        </div>
+
+        <div class="sidebar">
+            <label class="label" id="nameLabel">Name: </label>
+            <label class="label" id="opponent">Playing against</label>
+            <button class="exitRoomBtn">Exit Room</button>
+            <button class="createBtn" id="newGame">New Game</button>
+            <label class="label" id="gamesLabel">Rooms</label>
+            <ul class="gamesList">
+                <li>No games </li>
+            </ul>
+            <button class="joinBtn">Join</button>
+        </div>
+
+        <div class="mainbar">
+            
+            <div class="board">
+                <div class="topBar">
+                    <div class="myLottos">
+                        <div class="lotto">1</div>
+                        <div class="lotto">2</div>
+                    </div>
+                    <div class="opponentDisplay">
+                        <label>Opponent Deck</label>
+                        <div class="opponentSelection">
+                            <div class="opponentLottos">
+                                <div class="lotto">1</div>
+                                <div class="lotto">2</div>
+                            </div>
+                            <div class="cards">
+                                <div class="deck" id="card">1</div>
+                                <div class="deck" id="card">2</div>
+                                <div class="deck" id="card">3</div>
+                                <div class="deck" id="card">4</div>
+                                <div class="deck" id="card">5</div>
+                                <div class="deck" id="card">6</div>
+                                <div class="deck" id="card">7</div>
+                                <div class="deck" id="card">8</div>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+
+                <div class="timerContainer">
+                    <div class="timer">Time: <span>180</span></div>
+                </div>
+
+                <div class="answerContainer">
+                    <button class="resetBtn">Reset</button>
+                    <div class="answerSlot" id="cardSlot"></div>
+                    <div class="answerSlot" id="dieSlot"></div>
+                    <div class="answerSlot" id="cardSlot"></div>
+                    <div class="answerSlot" id="dieSlot"></div>
+                    <div class="answerSlot" id="cardSlot"></div>
+                    <div class="answerSlot" id="dieSlot"></div>
+                    <div class="answerSlot" id="cardSlot"></div>
+                    <button class="submitBtn">Submit</button>
+                    <div class="countdown">15</div>
+                    <div class="answerResult">50</div>
+                </div>
+                <div class="selectionContainer">
+                    <button class="passBtn">Pass</button>
+                    <div class="cards">
+                        <div class="deck" id="card">1</div>
+                        <div class="deck" id="card">2</div>
+                        <div class="deck" id="card">3</div>
+                        <div class="deck" id="card">4</div>
+                        <div class="deck" id="card">5</div>
+                        <div class="deck" id="card">6</div>
+                        <div class="deck" id="card">7</div>
+                        <div class="deck" id="card">8</div>
+                    </div>
+                    <div class="dice">
+                        <div class="deck" id="die">x</div>
+                        <div class="deck" id="die">÷</div>
+                        <div class="deck" id="die">*</div>
+                    </div>
+                    <div class="rightBtns">
+                        <button class="bellBtn">Bell</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="statusBox">Waiting for opponent to join...</div>
+
+            <div class="popup">
+                <label class="gameResult">You won!</label>
+                <button class="rematchBtn">Rematch</button>
+                <button class= "exitGameBtn">Exit</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+</body>
+
+</html>
