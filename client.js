@@ -61,7 +61,7 @@ let countdownStartTime;
 
 //Event listener for clicking on 'Connect' button
 connectBtn.addEventListener('click', (src) => {    //Click connect button to connect to server
-    socket = new WebSocket('ws://localhost:8000');
+    socket = new WebSocket('wss://operationlotto.onrender.com');
     socket.onmessage = onMessage;
     connectBox.style.display="none";    //Hides connect prompt 
     console.log(username.value);
