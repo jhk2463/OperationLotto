@@ -4,6 +4,8 @@ const username = document.querySelector('#username');
 const connectBtn = document.querySelector('.connectBtn');
 
 //Sidebar
+const rulesBtn = document.querySelector('.rulesBtn');
+const rulesBox = document.querySelector('.rulesBox');
 const nameLabel = document.querySelector('#nameLabel');
 const opponent = document.querySelector('#opponent');
 const exitRoomBtn = document.querySelector('.exitRoomBtn');
@@ -49,10 +51,11 @@ var clientId;
 var gameId;
 
 //Game Constants
-const operations = ["+", "-", "x", "÷", "^", "*"];
+const operations = ["+", "-", "x", "÷", "^", "#"];
 const cardSlotIndex = [0, 2, 4, 6];
 const dieSlotIndex = [1, 3, 5];
-const numLotto = 2;     //Make sure it matches number in server code
+const numLotto = 4;     //Make sure it matches number in server code
+const maxChances = 3;
 
 //Game Variables
 var answerSlotIndex = 0;
@@ -60,7 +63,7 @@ var rematchBool = false;
 var turnBool = false; 
 var passBool = false;
 var correctStack = 0;
-var chances = 3;
+var chances = maxChances;
 var prevStatus = "";
 
 //Timer & Countdown Variables
@@ -101,6 +104,18 @@ joinBtn.addEventListener('click', () => {
     }))
 });
 
+var close = false;
+//Open and close rules
+rulesBtn.addEventListener('click', () => {
+    if(!close) {
+        rulesBox.style.visibility = 'visible';
+        close = true;
+    } else {
+        rulesBox.style.visibility = 'hidden';
+        close = false;
+    }
+});
+
 //Exchange the card the player clicks on
 exchangeBtn.addEventListener('click', () => {
     prevStatus = statusBox.innerHTML;
@@ -115,6 +130,7 @@ exchangeBtn.addEventListener('click', () => {
 //Reroll dice when BOTH players agree to pass
 passBtn.addEventListener('click', () => {
     if(passBool == false){
+        console.log('1st')
         //First player to click on button
         statusBox.innerHTML = "Waiting for opponent to agree to pass";
         socket.send(JSON.stringify({    //Let other player know
@@ -123,6 +139,7 @@ passBtn.addEventListener('click', () => {
             'gameId': gameId
         }));
     } else {
+        console.log('2nd')
         //Second player to click on button
         passBool = false; //Reset passBool
         newRound();
@@ -187,7 +204,7 @@ submitBtn.addEventListener('click', () => {
             answerStr[index] = answerStr[index] + "/";
         } else if (slot.innerText == "^") {
             answerStr[index] = answerStr[index] + "**";
-        } else if (slot.innerText == "*") {
+        } else if (slot.innerText == "#") {
             index++;
         } else {
             answerStr[index] = answerStr[index] + slot.innerText;
@@ -211,7 +228,7 @@ submitBtn.addEventListener('click', () => {
     });
     if(correct) { //Animate correct answer and rerolls dice
         animateCorrect(answer);
-        if(correctStack < 2) {
+        if(correctStack < numLotto) {
             setTimeout(newRound, 3000);
         }
     } else {
@@ -233,7 +250,7 @@ submitBtn.addEventListener('click', () => {
     }));
 
     //End game when a player has made all of the lotto numbers
-    if(correctStack >= 2) {
+    if(correctStack >= numLotto) {
         popup.style.display='flex';
         gameResult.innerText = 'You Won!'
         clearInterval(timerIntervalID);
@@ -286,7 +303,10 @@ rematchBtn.addEventListener('click', () => {
             'gameId': gameId,
             'clientId': clientId
         }));
-        chances = 3;
+        countdown.style.display="none";
+        chances = maxChances;
+        exchangeLabel.innerHTML = "Chances: " + chances;
+        enableButtons(exchangeBtn);
         correctStack = 0;
         resetLottoVisual();
         dealCards();
@@ -295,6 +315,8 @@ rematchBtn.addEventListener('click', () => {
     }  
     else {                         //Second player agrees to rematch
         resetGame();
+        enableButtons(exchangeBtn);
+        exchangeLabel.innerHTML = "Chances: " + chances;
         popup.style.display='none';
     }
 });
@@ -367,7 +389,7 @@ function onMessage(msg) {
                 dice[i].innerHTML = data.dice[i];
                 animateCard(dice[i]);
             }
-
+            console.log('why')
             startTimer(); 
             resetAnswerSlots();
             disableAnswerContainer();
@@ -526,12 +548,6 @@ function exchangeCard(src) {
     
     //Add animation to exchanged card
     animateCard(src.target);
-    /*
-    src.target.classList.add('animateCard');
-    setTimeout(() => {
-        src.target.classList.remove('animateCard');
-    }, 1000);
-    */
     
     //Puts cards and status back into the state they previously were
     myCards.forEach(card => {
@@ -643,7 +659,7 @@ function resetGame() {
         'gameId': gameId
     }));
     countdown.style.display="none";
-    chances = 3;
+    chances = maxChances;
     correctStack = 0;
     rematchBool = false;
     enableButtons(exchangeBtn);

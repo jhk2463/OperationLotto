@@ -6,10 +6,10 @@ const wss = new WebSocket({'httpServer' : http}); //Create websocket server
 
 var clients = {};    //Store client connections with client id as key
 var games = {};      //Store game objects with game id as key
-const numLotto = 2;  //Number of lotto numbers players are trying to match
+const numLotto = 4;  //Number of lotto numbers players are trying to match
 const maxLotto = 50; //The maximum integer a lotto number can be
 
-const operations = ["+", "-", "x", "÷", "^", "*"];
+const operations = ["+", "-", "x", "÷", "^", "#"];
 
 //Deal with client request to connect to server
 wss.on('request', (req) => {
@@ -100,7 +100,7 @@ function onMessage(msg) {
                     'opponent': opponent
                 }));
             });
-
+            console.log('here');
             updateBoard(data.gameId);
             break;
 
@@ -284,7 +284,7 @@ function rollLotto() {
 function rollDice() {
     var dice = ["", "", ""];
     for (let i=0; i<3; i++) {
-        if(dice.includes("*")) {
+        if(dice.includes("#")) {
             dice[i] = operations[Math.floor(Math.random() * 5)];
         } else {
             dice[i] = operations[Math.floor(Math.random() * 6)];

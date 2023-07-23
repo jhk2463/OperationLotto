@@ -21,6 +21,7 @@
         </div>
 
         <div class="sidebar">
+            <button class="rulesBtn">Rules</button>
             <label class="label" id="nameLabel">Name: </label>
             <label class="label" id="opponent">Playing against</label>
             <button class="exitRoomBtn">Exit Room</button>
@@ -32,6 +33,32 @@
             <button class="joinBtn">Join</button>
         </div>
 
+        <div class="rulesBox">
+            Objective
+            <ul>
+                <li>Be the first player to match all four lotto numbers using eight cards and three dice.</li>
+            </ul>
+            Setup
+            <ul>
+                <li>Four lotto numbers are rolled ranging from 1 to 50. Both players play with for the same four lotto numbers.</li>
+                <li>Eight cards ranging from 1 to 6 are randomly dealt to each player.</li>
+                <li>Each round, three dice with operations are rolled. These can be addition '+', subtraction '-', multiplication 'x', division '÷', power '^', and hashtag '#'.</li>
+                <li>The hashtag '#' symbol connects the two numbers on either side. For example '3 # 4' becomes '34'.</li>
+                <li>Expressions are evaluated following normal order of operations, and the hashtag symbol is applied at the very end.</li>
+            </ul>
+            How To Play
+            <ul>
+                <li>Players are given 3 minutes per round.</li>
+                <li>The first person to click the 'Bell' button will be allowed to submit an expression using four cards and the three dice. But be careful before you press! You only have 15 seconds to submit an answer.</li>
+                <li>If your answer matches one of the lotto numbers, the game will move onto the next round where the three dice are rerolled and the four used cards will be redealt.</li>
+                <li>If your answer does not match any of the lotto numbers, the other player will be given the rest of the time to submit their answer.</li>
+                <li>If you would like to reroll the three dice, click the 'Pass' button. If both players agree, the dice will be rerolled.</li>
+                <li>Each player is also given three chances to exchange a card with a new randomly dealt card.</li>
+            </ul>
+            Example
+            <div>3 - 1 x 2 # 5   =   15.</div>
+        </div>
+
         <div class="mainbar">
             
             <div class="board">
@@ -39,6 +66,8 @@
                     <div class="myLottos">
                         <div class="lotto">1</div>
                         <div class="lotto">2</div>
+                        <div class="lotto">3</div>
+                        <div class="lotto">4</div>
                     </div>
                     <div class="opponentDisplay">
                         <label>Opponent Deck</label>
@@ -46,6 +75,8 @@
                             <div class="opponentLottos">
                                 <div class="lotto">1</div>
                                 <div class="lotto">2</div>
+                                <div class="lotto">3</div>
+                                <div class="lotto">4</div>
                             </div>
                             <div class="cards">
                                 <div class="deck" id="card">1</div>
