@@ -118,7 +118,7 @@ h1 {
 }
 
 .board {
-    visibility: visible;
+    visibility: hidden;
 }
 
 .topBar{
@@ -338,7 +338,7 @@ h1 {
 }
 
 .animateCard {
-    animation: scaleUpAndDown 0.7s normal;
+    animation: scaleUpAndDown 0.8s normal;
 }
 
 @keyframes scaleUpAndDown {
