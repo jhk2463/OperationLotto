@@ -1,5 +1,8 @@
 const requestListener = function(req, res) {
-    res.end('Welcome');
+    const html = "<!DOCTYPE html> <html> <body> <p>example</p> </body> </html>";
+  
+  res.type('html');
+  res.send(html);
 }
 
 const PORT = 8000;
