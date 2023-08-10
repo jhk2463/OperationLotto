@@ -13,7 +13,7 @@
 
 const PORT = 8000;
 const http = require("http")
-  .createServer(requestListener)
+  .createServer()
   .listen(PORT, console.log("Listening on port " + PORT));
 const WebSocket = require("websocket").server; //Import websocket
 const wss = new WebSocket({ httpServer: http }); //Create websocket server

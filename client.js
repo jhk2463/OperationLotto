@@ -81,8 +81,10 @@ var countdownStartTime;
 //Connect client to server via websockets
 connectBtn.addEventListener('click', (src) => {
     socket = new WebSocket('ws://localhost:8000');
+    //socket = new WebSocket('ws://operationlotto.onrender.com/');
     socket.onmessage = onMessage;
     connectBox.style.display="none";    //Hides connect prompt
+    console.log('trying to connect');
 });
 
 //Send a request to create a game room
@@ -333,6 +335,7 @@ function onMessage(msg) {
         case 'connected': 
             clientId = data.clientId;    //Create local copy of clientId sent from server
             nameLabel.innerHTML = `Name: ${username.value}`;
+            console.log('connected');
             break;
 
         //Update list of available games
