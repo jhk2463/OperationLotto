@@ -1,11 +1,18 @@
-const PORT = process.env.PORT || 8000;
+const express = require("express");
+const cors = require("cors");
 const http = require("http");
 const WebSocketServer = require("websocket").server; //Import websocket
 
+const PORT = process.env.PORT || 8000;
+
+const app = express();
 const server = http
-  .createServer()
+  .createServer(app)
   .listen(PORT, console.log("Listening on port " + PORT));
 const wss = new WebSocketServer({ httpServer: server }); //Create websocket server
+
+app.use(express.static("."));
+app.use(cors());
 
 var clients = {}; //Store client connections with client id as key
 var games = {}; //Store game objects with game id as key
