@@ -1,22 +1,11 @@
-// var fs = require('fs');
-// var html;
+const PORT = process.env.PORT || 8000;
+const http = require("http");
+const WebSocketServer = require("websocket").server; //Import websocket
 
-// fs.readFile('./client.html', (err, data) => {
-//     if (err) throw err;
-//     else html = data;
-// });
-
-// const requestListener = function(req, res) {
-//     res.write(html);
-//     res.end();
-// }
-
-const PORT = 8000;
-const http = require("http")
+const server = http
   .createServer()
   .listen(PORT, console.log("Listening on port " + PORT));
-const WebSocket = require("websocket").server; //Import websocket
-const wss = new WebSocket({ httpServer: http }); //Create websocket server
+const wss = new WebSocketServer({ httpServer: server }); //Create websocket server
 
 var clients = {}; //Store client connections with client id as key
 var games = {}; //Store game objects with game id as key

@@ -79,7 +79,7 @@ var countdownStartTime;
 //Connect client to server via websockets
 connectBtn.addEventListener("click", (src) => {
   socket = new WebSocket("ws://localhost:8000");
-  //socket = new WebSocket("ws://operationlotto.onrender.com/");
+  //socket = new WebSocket("wss://operationlotto.onrender.com");
   socket.onmessage = onMessage;
   connectBox.style.display = "none"; //Hides connect prompt
   console.log("trying to connect");
